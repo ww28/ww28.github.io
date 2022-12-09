@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test gaem</title>
+    <meta content="L">
+    <link href='https://fonts.googleapis.com/css?family=Baloo' rel='stylesheet'>
+    <style>
+    #gameMenu {
+		 color:white;
+		 font-family: 'Baloo';
+		 font-weight:800;
+		 font-size: 60px;
+		 font-variant: normal;
+		 position: absolute;
+		 top: 25%;
+		 bottom: 25%; 
+		 width:55%;
+		 right: 35%;  
+		 left: 35%; 
+    }
+    input {
+		 width: 55%;  
+		 margin: 0; 
+		 background: "#328a15";
+		 border-radius:10px;
+		 text-decoration: none;
+		 text-indent: none;
+		 text-transform: capitalize; 
+		 font-family: 'Baloo';
+		 color: black;
+		 font-size: 35px;
+    }
+    body {
+		 background-color: #1d6106;    
+		 font-family: 'Baloo';
+		 color: white;
+		 overflow-y: none;
+		 overflow-x: none;
+		 outline: none;
+		 overflow: none !important;
+		 scrollbar-width: 0px;
+    }
+    button {
+    	 border-radius: 20px;
+    	 background: "#328a15";
+    	 border: none;
+    	 color: black;
+    	 font-family: 'Baloo';
+    	 height: 10%;
+    	 width: 55%;
+    	 font-size: 35px;
+    }
+    #game {
+    	position: absolute;
+    	width: 100%;
+    	height: 100%;
+    	margin: 0;
+    	top: 0;
+    	left: 0;
+    	right: 0;
+    }
+    </style>
+  </head>
+  <body>
+  <script type="text/javascript" src = "https://cdn.jsdelivr.net/npm/interactjs@1.9.20"></script>
+<script type="text/javascript" src = "https://cdn.jsdelivr.net/npm/stats.js@0.17.0"></script>
+  <canvas id = "game" width = "1920" height="1080">
+  
+  </canvas>
+
+  <div id = "gameMenu">
+  <h1>Test Game</h1><br>
+  <input type = "name" id = "nicknaem"><br><br>
+  <button onclick="play()"> Play </button>
+    <script type="text/javascript" src="src/menu.js">
+  
+  </script>
+  
+  </div>
+  </body>
+</html>
