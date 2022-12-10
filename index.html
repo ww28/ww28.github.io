@@ -73,10 +73,15 @@
   <h1>WW28.I0</h1><br>
   <input type = "name" id = "nicknaem"><br><br>
   <button onclick="play()"> Play </button>
-    <script type="text/javascript" src="src/menu.js">
-  
-  </script>
-  
+    <script type="text/javascript" src="src/menu.js" defer>  </script>
+     <script type="text/javascript" src="src/Player/movement.js"></script>
+      <script type="text/javascript" src="src/Player/fixMove.js"></script>
+     
+      
   </div>
+    <div id = "lb" style = "border-radius: 20px;background: rgba(0, 0, 0, 0.5);width:20%; height: 35%; position: absolute; top:0; right:0; text-align: center;">
+          <h2>LeaderBoard</h2><br>
+    </div>
+     <script type="text/javascript" src="src/Server/leaderboard.js" defer></script>
   </body>
 </html>

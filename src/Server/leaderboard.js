@@ -1,0 +1,6 @@
+
+let lb = document.getElementById("lb")
+
+window.lbData = {}
+
+lb.innerHTML = "Leaderboard<hr> Pulsar     500k"
