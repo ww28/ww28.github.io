@@ -1,13 +1,14 @@
  /* Menu render */
 /* azari pls dont skid */
  let canvas = document.getElementById("game");
- let ctx = canvas.getContext("2d");
+ window.ctx = canvas.getContext("2d");
  ctx.strokeStyle = "#5ba143";
  ctx.lineWidth = 3;
- const maxScreenWidth = 1920;
- const maxScreenHeight = 1080;
+ const maxScreenWidth = 2000;
+ const maxScreenHeight = 1200;
 document.querySelector("#nicknaem").value = localStorage.name;
-     
+     var img = new Image("https://static.wikia.nocookie.net/moom/images/0/0b/Samurai_1.png/revision/latest?cb=20171004213933")
+     img.src = "https://static.wikia.nocookie.net/moom/images/0/0b/Samurai_1.png/revision/latest?cb=20171004213933"
      ctx.save()
      window.playerPos = {
          x: 100,
@@ -40,7 +41,6 @@ document.querySelector("#nicknaem").value = localStorage.name;
      ctx.font = "30px Baloo";
      ctx.fillText(localStorage.name + " Hp: "+ health + " " + name + " Pos: " + window.playerPos.x + " " + window.playerPos.y, 1920 / 2 - window.playerPos.x - 180, 1080 / 2 + window.playerPos.y / 2 - 90)
      ctx.fill();
-    
      ctx.beginPath();
      ctx.strokeStyle = "black";
      ctx.fillStyle = "#88ba47";
@@ -48,8 +48,17 @@ document.querySelector("#nicknaem").value = localStorage.name;
      ctx.closePath();
      ctx.stroke();
      ctx.fill();
+     ctx.drawImage(img, 1920 / 2 - window.playerPos.x, 1080 / 2 + window.playerPos.y / 2, 120, 240)
+     if (window.mehitting) {
+          ctx.font = "75px Baloo";
+          ctx.strokeStyle = "black"
+          ctx.strokeText("40", 1920 / 2 - window.playerPos.x + 180, 1080 / 2 + window.playerPos.y / 2 + 90)
+          ctx.stroke();
+          ctx.restore();
+     }
      window.requestAnimationFrame(animate);
  }
+
  animate();
- window.playerPos.y = 500
+
 
