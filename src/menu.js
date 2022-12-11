@@ -1,10 +1,12 @@
  /* Menu render */
+/* azari pls dont skid */
  let canvas = document.getElementById("game");
  let ctx = canvas.getContext("2d");
  ctx.strokeStyle = "#5ba143";
  ctx.lineWidth = 3;
  const maxScreenWidth = 1920;
  const maxScreenHeight = 1080;
+document.querySelector("#nicknaem").value = localStorage.name;
      
      ctx.save()
      window.playerPos = {
