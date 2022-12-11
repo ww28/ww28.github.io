@@ -90,12 +90,23 @@
     Blood: 0<br>Food: 0<br>Building Monad: 0<br>
     </div>
    <div id = "map">
-    x
+    <div id = "pos">x</div>
     </div>
   <div id = "gameMenu">
   <h1>WW28.I0</h1><br>
   <input type = "name" id = "nicknaem"><br><br>
   <button onclick="play()"> Play </button>
+  <br>
+  <label for="skins">Choose skin:</label>
+
+<select name="skins" id="skins">
+  <option value="1">Axe</option>
+  <option value="2">Hammer</option>
+  <option value="3">Katana</option>
+  <option value="4">Bat</option>
+   <option value="5">Spear</option>
+   <option value="6">Bow</option>
+</select>
     <script type="text/javascript" src="src/menu.js" defer>  </script>
      <script type="text/javascript" src="src/Player/movement.js"></script>
       <script type="text/javascript" src="src/Player/fixMove.js"></script>
@@ -110,5 +121,6 @@
      <script type="text/javascript" src="src/Server/leaderboard.js" defer></script>
      <script type="text/javascript" src="src/Render/weapon.js" defer></script>
      <script type="text/javascript" src="src/Player/gather.js" defer></script>
+    <script type="text/javascript" src="src/Server/map.js" defer></script>
   </body>
 </html>

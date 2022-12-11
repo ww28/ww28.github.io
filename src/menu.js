@@ -1,5 +1,7 @@
  /* Menu render */
 /* azari pls dont skid */
+window.skinUrl = "https://raw.githubusercontent.com/ww28/ww28.github.io/main/img/Katana_1_E.webp"
+            window.dmg = "40";
  let canvas = document.getElementById("game");
  window.ctx = canvas.getContext("2d");
  ctx.strokeStyle = "#5ba143";
@@ -7,8 +9,8 @@
  const maxScreenWidth = 2000;
  const maxScreenHeight = 1200;
 document.querySelector("#nicknaem").value = localStorage.name;
-     var img = new Image("https://static.wikia.nocookie.net/moom/images/0/0b/Samurai_1.png/revision/latest?cb=20171004213933")
-     img.src = "https://static.wikia.nocookie.net/moom/images/0/0b/Samurai_1.png/revision/latest?cb=20171004213933"
+     window.img = new Image()
+     img.src = window.skinUrl
      ctx.save()
      window.playerPos = {
          x: 100,
@@ -52,7 +54,7 @@ document.querySelector("#nicknaem").value = localStorage.name;
      if (window.mehitting) {
           ctx.font = "75px Baloo";
           ctx.strokeStyle = "black"
-          ctx.strokeText("40", 1920 / 2 - window.playerPos.x + 180, 1080 / 2 + window.playerPos.y / 2 + 90)
+          ctx.strokeText(window.dmg, 1920 / 2 - window.playerPos.x + 180, 1080 / 2 + window.playerPos.y / 2 + 90)
           ctx.stroke();
           ctx.restore();
      }

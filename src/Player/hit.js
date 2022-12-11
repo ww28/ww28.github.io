@@ -1,14 +1,18 @@
+let reloadLast = Date.now();
+
 window.addEventListener('mousedown', function() {
-    window.mehitting = true
+    if (Date.now() - reloadLast > 230) window.mehitting = true
+    reloadLast = Date.now()
     setTimeout(()=>{
         window.mehitting = false
-    }, 250);
+    }, 120);
 });
 
 window.addEventListener('touchstart', function() {
-    window.mehitting = true
+    if (Date.now() - reloadLast > 230) window.mehitting = true
+    reloadLast = Date.now()
     setTimeout(()=>{
         window.mehitting = false
-    }, 250);
+    }, 120);
 });
 
