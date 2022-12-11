@@ -1,0 +1,82 @@
+{
+  "name": "ww28",
+"short_name": "WW28.IO",
+"start_url": "/",
+"display_override": ["fullscreen"],  
+  "display": "fullscreen",
+  "lang": "en",
+  "theme_color": "#000000",
+  "dir": "ltr",
+  "scope": "/",
+   "shortcuts": [
+    {
+      "name": "Start best game ever",
+      "short_name": "Start ww28.io",
+      "description": "Just start the game",
+      "url": "/",
+      "icons": [{ "src": "https://win98icons.alexmeub.com/icons/png/windows_update_large-5.png", "sizes": "256x256" }]
+    }
+   ],
+  "orientation": "landscape",
+  "description": "U shall not steal my manifest niggerz using ae ez lol",
+  "screenshots": [
+    {
+      "src": "https://win98icons.alexmeub.com/icons/png/windows_update_large-5.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/ce7722b1-a36b-4606-b878-ee34cb468bfa%2Fpwainstall.glitch.me_(Pixel%202%20XL).png?v=1591213289513",
+      "sizes": "256x256",
+      "type":"image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/ce7722b1-a36b-4606-b878-ee34cb468bfa%2Finstallsnip.png?v=1573316626664",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/ce7722b1-a36b-4606-b878-ee34cb468bfa%2Finstallsnip.png?v=1573316626664",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "features": [
+    "Cross Platform",
+    "fast",
+    "(not) enjoyable",
+    "not skid"
+  ],
+  "icons": [
+    {
+      "src": "https://cdn.icon-icons.com/icons2/603/PNG/256/delete_unapprove_discard_remove_x_red_icon-icons.com_55984.png",
+      "sizes": "256x256",
+      "type": "image/png",
+       "purpose": "any"
+    },
+    {
+      "src": "https://cdn.icon-icons.com/icons2/603/PNG/512/delete_unapprove_discard_remove_x_red_icon-icons.com_55984.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "categories": ["cheats","games","noot noot","cow game ez"],
+  "related_applications": [
+    {
+    "platform": "play",
+    "url": "https://play.google.com/store/apps/details?id=com.google.chrome",
+    "id": "com.google.chrome"
+    }
+  ],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "url_betahref": "url"
+    }
+  },
+  "prefer_related_applications": true
+}
