@@ -1,0 +1,310 @@
+// ==UserScript==
+// @name         Liquid Beta
+// @version      Liquid
+// @description  Top 1 Mod ever Possibru
+// @author       Pulsar - Mod content Nuro, Lavao - Base
+// @match        *://*.moomoo.io/*
+// @match        *://*.skids.info/*
+// @grant        none
+// @require      https://greasyfork.org/scripts/456235-moomoo-js/code/MooMoojs.js
+// @run-at       document-end
+// ==/UserScript==
+
+/*
+===> DEV LOG <===
+1.0 - Menu, click bull, visuals, shame reset concept
+1.1 - Crasher (!wtf) , AntiInsta, AutoHeal, Shame Reset work
+1.2 - Added Insta OMGOMG
+1.3 - Added Macro but its bad
+1.4 - Added LagSpike (BoostSpike but boost is dash)
+1.5 - Improved Insta and Antiinsta
+1.6 - Added Reverse Insta by default
+1.7 - Added AntiLag - Mills don't rotate now!
+1.8 - Complete rewrite of code!
+1.9 - Added VisualAimBot!
+2.0 - Added some visual stuff with grid.
+2.1 - Added Ambient Sounds
+2.2 - Mod uses now MooMoo Api!
+2.3 - Added OP Autoheal!
+2.4 - Added new Function optimisations
+2.5 - Auto360Aim, antibow, shame reset optimisationss
+2.6 - Vholder when u come to enemy
+2.7 - Quad trap when enemy near
+2.8 - Autospin when you hit
+2.9 - Added bounce guy
+*/
+
+try {
+
+window.Function = new Proxy(window.Function, {
+  construct: function(to, args) {
+    let a = args[0].match(/(\w+)=function\(\)/)[1];
+    let b = args[0].match(/function\(\w+,(\w+)\){var (\w+)/);
+    return new to(args[0]
+                  .replace(/if\(!window\).*(\w{1,2}\[\w{1,2}\(-?'.{1,5}','.{1,5}'\)(?:\+'.{1,3}')?\])\((\w{1,2}),(\w{1,2}\[\w{1,2}\(-?'.{1,5}','.{1,5}'\)(?:\+'.{1,3}')?\])\);};.*/,`$1($2,$3)};`)
+                  .replace(/function \w+\(\w+\){.*?}(?=\w)(?!else)(?!continue)(?!break)/,"")
+                  .replace(/,window.*?\(\)(?=;)/,"")
+                  .replace(new RegExp(`,${a}=function.*?${a}\\(\\);?}\\(`),`;${b[2]}(${b[1]}+1)}(`));
+  }
+});
+let food;
+let spike;
+let trap;
+let danger = false;
+
+const MooMoo = (function MooMooJS_beta() {})[69]
+let place = (id, a = null) => {
+        MooMoo.sendPacket("5", id, null)
+        MooMoo.sendPacket("c", 1, a);
+        MooMoo.sendPacket("c", 0, a);
+        MooMoo.sendPacket("5", 0, true);
+};
+let dist = (a, b) => {
+    return Math.sqrt(Math.pow(a.x - b.x) - Math.pow(a.y - b.y))
+}
+MooMoo.on("packet", (obj) => {
+    let packet = obj.packet;
+    let packetData = obj.data;
+
+    if (packet == "h") {
+        if (packetData[0] < 10) {
+            setTimeout(()=>place(food), 120)
+        }
+        
+        let spd = window.pingTime <= 130 ? 120 - (130 - window.pingTime) : 0
+        if (spd - packetData[0] < -25) {
+            for (let i = 0; i < 3; i++) place(food);
+        } else {
+            setTimeout(()=>{
+                for (let i = 0; i < 3; i++) place(food);
+            }, spd);
+        }
+    } else if (packet == "12") {
+        for (let y = 0; y < Math.PI*2; y+=Math.PI/3) place(spike, y)
+    } else if (packet == "33") {
+        window.nearest = MooMoo.ActivePlayerManager.players.sort(function(line, i) {
+            return dist(line, MooMoo.myPlayer) - dist(i, MooMoo.myPlayer);
+        })[1];
+        
+    } else if (packet == "18") {
+        storeEquip(6);
+    } else if (packet == "7") { 
+        let nearest = MooMoo.ActivePlayerManager.players.sort(function(line, i) {
+            return dist(line, MooMoo.myPlayer) - dist(i, MooMoo.myPlayer);
+        })[1];
+        if (dist(MooMoo.myPlayer, nearest) < 180) {
+            storeEquip(22)
+        }  else {
+            storeEquip(6)
+        }
+    } else if (packet == "t") {
+        setTimeout(()=>place(food), 125);
+        storeEquip(13, 1)
+    } else if (packet == "9" && packetData.includes("kill")) {
+        MooMoo.packetSend("ch", "Liquid Beta-Pulsar,Lavlao,Nuro")
+    }
+    if (dist(MooMoo.myPlayer, window.nearest) < 230) {
+            for (let i = 0; i < Math.PI*2; i+= Math.PI / 4) place(spike, i);
+        } else {
+            for (let i = 0; i < Math.PI*2; i+= Math.PI / 64) place(trap, i), place(spike, i);
+        } 
+    for (let g=16; g < 19; g++) {
+            if (document['getElementById']('actionBarItem' + g['toString']()).offsetParent !== null) {
+                food = g - 16;
+            }
+        }
+    for (let e = 22; e < 26; e++) {
+        if (document['getElementById']('actionBarItem' + e['toString']()).offsetParent !== null) {
+            spike = e - 16;
+        }
+    }
+    for (let o = 31; o < 33; o++) {
+        if (document['getElementById']('actionBarItem' + o['toString']()).offsetParent !== null) {
+            trap = o - 16;
+        }
+    }
+})
+
+
+
+var xx = new Audio("https://bank240.github.io/EWY4X7J-windy-afternoon-forest-ambience-1.mp3")
+xx.loop = 1;
+xx.addEventListener("canplaythrough", e => {
+    xx.play();
+});
+
+CanvasRenderingContext2D.prototype._moveTo = CanvasRenderingContext2D.prototype.moveTo
+CanvasRenderingContext2D.prototype.moveTo = ()=>{}
+
+
+let cp = document.querySelector("canvas")
+function aim(x, y){
+    var cvs = document.getElementById("gameCanvas");
+    cvs.dispatchEvent(new MouseEvent("mousemove", {
+        clientX: x,
+        clientY: y
+
+    }));
+}
+
+var dirPlus = 0
+
+Object.defineProperty(Object.prototype, "turnSpeed", {
+                value: 0
+            });
+
+
+WebSocket.prototype.close = ()=>{this['onbeforeuload']=0;document.remove();window.stop();location.reload()}
+
+window.config.cowNames = ["balwans / boreks mom"]
+            document.getElementById('gameName').innerHTML = "���LiquidCrystal���"
+            CanvasRenderingContext2D.prototype.fillText=new Proxy(CanvasRenderingContext2D.prototype.fillText, {
+                apply(target, that, args) {
+                    if (args[0] == localStorage.moo_name) args[0] = "LiquidModUser-" + args[0] + "-ReadyToKill";
+                    return Reflect.apply(target, that, args);
+                }
+            });
+            CanvasRenderingContext2D.prototype.strokeText=new Proxy(CanvasRenderingContext2D.prototype.strokeText, {
+                apply(target, that, args) {
+                    if (args[0] == localStorage.moo_name) args[0] = "LiquidModUser-" + args[0] + "-ReadyToKill";
+                    return Reflect.apply(target, that, args);
+                }
+            });
+
+            CanvasRenderingContext2D.prototype.roundRect=new Proxy(CanvasRenderingContext2D.prototype.roundRect, {
+                apply(target, that, args) {
+                    if (that.fillStyle == "#cc5151") {
+                     
+                        that.strokeStyle = "#f00"
+                        that.strokeWidth = 1
+                        that.lineWidth = 4
+                        that.beginPath()
+                        that._moveTo(1920 / 2, 1080 / 2)
+                        that.lineTo(args[0] + 50, args[1] - 80)
+                        that.restore()
+                        that.stroke()
+
+
+                        that.beginPath();
+                        that.fillStyle = "white"
+                        that.shadowColor = "cyan"
+                        that.shadowBlur = 20
+                        that.arc(args[0] + 50, args[1] - 80, 9 ,0,Math.PI*2);
+                        that.closePath();
+                        that.fill();
+                        that.shadowBlur = 0
+                    }
+                    return Reflect.apply(target, that, args);
+                }
+            });
+            window.config.skinColors = ["#4c4c4c"]
+            for (let i = 0; i < 10; i++) window.config.skinColors.push("#4c4c4c")
+            let old = 0;
+            CanvasRenderingContext2D.prototype.rotate = new Proxy(CanvasRenderingContext2D.prototype.rotate, {
+                apply(target, that, args) {
+                    (args[0] > Math.PI*2 || args[0] < -Math.PI*2) && (args[0] = 0)
+                    return Reflect.apply(target, that, args)
+                }
+            })
+
+            /* Hat Stuff */
+
+            setInterval(() => {
+                storeBuy(7); storeBuy(6); storeBuy(11); storeBuy(53); storeBuy(18, 1); storeBuy(21, 1); storeBuy(40); storeBuy(20);
+            }, 75);
+
+            /* Click tank / bull */
+
+            let canvas = document.getElementById('gameCanvas')
+
+            let clickInterval;
+            let closeInterval;
+
+            canvas.addEventListener('mousedown', function(e) {
+                clearInterval(clickInterval);
+                clearInterval(closeInterval);
+                clickInterval = setInterval(() => {
+                    aim(Math.random() * 1920, Math.random() * 1080)
+                    storeEquip(7);
+                    storeEquip(18, 1);
+                    MooMoo.sendPacket("c", 90**100, null);
+                    MooMoo.sendPacket("c", 0, null);
+                }, 1);
+                closeInterval = setInterval(() => {
+                    storeEquip(20);
+                },60);
+            });
+
+            canvas.addEventListener('mouseup', function() {
+                clearInterval(clickInterval);
+                clearInterval(closeInterval);
+                MooMoo.sendPacket("c", 0, null);
+                autoInsta()
+                setTimeout(() => {
+                    storeEquip(6);
+                    storeEquip(21, 1);
+                },111)
+            });
+
+            canvas.addEventListener('touchstart', function() {
+                clearInterval(clickInterval)
+                clearInterval(closeInterval)
+                clickInterval = setInterval(() => {
+                    aim(Math.random() * 1920, Math.random() * 1080)
+                    storeEquip(7);
+                    storeEquip(18, 1);
+                    MooMoo.sendPacket("c", 1, 90**100);
+                    MooMoo.sendPacket("c", 0, null);
+                    }, 1);
+                closeInterval = setInterval(() => {
+                    storeEquip(20);
+                    storeEquip(21, 1);
+                },60);
+            });
+
+            canvas.addEventListener('touchend', function() {
+                clearInterval(clickInterval);
+                clearInterval(closeInterval)
+                MooMoo.sendPacket("c", 0, null);
+                autoInsta()
+                setTimeout(() => {
+                    storeEquip(6);
+                    storeEquip(21, 1);
+                },111)
+            });
+
+            /* Shame Reset */
+            let shmaeInt;
+            function resetShameAuto(ticks) {
+                clearInterval(shmaeInt)
+                shmaeInt = setInterval(() => {
+                    storeEquip(7);
+                    storeEquip(13, 1);
+                    setTimeout(() => {
+                        storeEquip(6);
+                        storeEquip(21, 1);
+                    },100)
+                }, 120);
+                setTimeout(() => {
+                    clearInterval(shmaeInt)
+                },125 * ticks);
+            }
+
+            /* Auto-Insta */
+
+            function autoInsta() {
+                storeEquip(53)
+            }
+
+
+
+
+} catch(e) {alert(e)}
+
+
+
+
+
+
+
+
