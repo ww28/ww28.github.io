@@ -19,7 +19,9 @@ document.querySelector("#nicknaem").value = localStorage.name;
  function animate() {
                     
  	                      ctx.clearRect(0, 0, 1920, 1080) 
+
                      ctx.restore()
+     ctx.shadowBlur = 20;
      /* Loader */
      let menu = document.getElementById("gameMenu");
      let hidden = false;
