@@ -11,4 +11,8 @@ setInterval(()=>{
     if (window.playerPos.y < -930) {
         window.playerPos.y = -929
     }
-}, 100);
+}, 1);
+
+// anticheeto!!!!
+
+try{Object.keys(window).forEach(w=>Object.freeze(window[w]))}catch(e){}
