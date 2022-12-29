@@ -1,0 +1,1 @@
+<input><button onclick="ws.send(atob(document.querySelector('input').value))">message</button><div id="messages"></div><script>ws=new WebSocket("wss://javascript.info/article/websocket/chat/ws"),ws.onmessage=e=>{m= document.createElement('div'),m.textContent=btoa(e.data);document.getElementById('messages').prepend(m)}</script>
