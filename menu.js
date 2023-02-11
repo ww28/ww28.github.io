@@ -1,7 +1,9 @@
  /* Menu render */
- 
- 
+ window.playerPos = {x: 0, y: 0}
+ widow.img = new Image()
 var spinning = false;
+window.playerImg = new Image("./src/img/table.png");
+window.playerImg.src = "./src/img/table.png"
  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
   with (this) {
     if (r instanceof Array) {
@@ -33,7 +35,7 @@ setInterval(()=>{if(spinning){iterated+=.1}})
 setInterval(()=>{
 	num = num * (1-.05) + (Math.sin(iterated)*(Math.PI*2)) *.05
 },5)
- document.getElementsByTagName("iframe")[0].contentWindow.eval(`document.body.style = 'button {border: 0;background: black;color: white;	}';`);
+ // document.getElementsByTagName("iframe")[0].contentWindow.eval(`document.body.style = 'button {border: 0;background: black;color: white;	}';`);
 window.addEventListener("contextmenu", e => {
 	e.preventDefault();
 });
@@ -90,7 +92,8 @@ document.querySelector("#nicknaem").value = localStorage.name;
      ctx.beginPath();
      ctx.strokeStyle = "#75a832"
      ctx.fillStyle = "#88ba47";
-     ctx.arc(1920 / 2 - window.playerPos.x, 1080 / 2 + window.playerPos.y / 2, 50, 50, 6, true);
+     // ctx.arc(1920 / 2 - window.playerPos.x, 1080 / 2 + window.playerPos.y / 2, 50, 50, 6, true);
+     ctx.drawImage(playerImg, window.playerPos.x, window.playerPos.y, 100, 100);
      ctx.closePath();
      ctx.stroke();
      ctx.fill();

@@ -10,7 +10,7 @@
 		 color:white;
 		 font-family: 'Baloo';
 		 font-weight:800;
-		 font-size: 20px;
+		 font-size: 10px;
 		 font-variant: normal;
 		 position: absolute;
 		 top: 0;
@@ -32,7 +32,7 @@
 		 font-size: 35px;
     }
     body {
-                  background-color: #1d6106;    
+                  background-color: #337741;    
 		 font-family: 'Baloo';
 		 color: white;
 		 overflow-y: none;
@@ -62,8 +62,7 @@
     	left: 0;
     	right: 0;
         overflow: none;
-        box-shadow: inset 10px 10px 9999px black, inset 10px 10px 9999px black;
-    }
+      }
     #res {
         background: rgba(0, 0, 0, 0.75);
         width: 13.5%;
@@ -84,19 +83,23 @@
     </style>
   </head>
   <body>
+    <script>
+    document.getElementById('game').style.imageRendering = "optimizeSpeed"
+
+    </script>
   <script type="text/javascript" src = "https://cdn.jsdelivr.net/npm/interactjs@1.9.20"></script>
 <script type="text/javascript" src = "https://cdn.jsdelivr.net/npm/stats.js@0.17.0"></script>
   <canvas id = "game" width = "1920" height="1080">
   
   </canvas>
-   <div id = "res">
+   <div id = "res" style = "display: none">
     Blood: 0<br>Food: 0<br>Building Monad: 0<br>
     </div>
    <div id = "map">
     <div id = "pos">x</div>
     </div>
   <div id = "gameMenu">
-  <h1>WW28.I0</h1><br>
+  <h1>Table.io</h1><br>
   <input type = "name" id = "nicknaem"><br><br>
   <button onclick="play()"> Play </button>
   <br>
@@ -110,20 +113,20 @@
    <option value="5">Spear</option>
    <option value="6">Bow</option>
 </select>
-    <script type="text/javascript" src="src/menu.js" defer>  </script>
-     <script type="text/javascript" src="src/Player/movement.js"></script>
-      <script type="text/javascript" src="src/Player/fixMove.js"></script>
-     <script type="text/javascript" src="src/Player/hit.js"></script>
-    <script type="text/javascript" src="src/Sounds/ambient.js"></script>
+    <script type="text/javascript" src="./src/menu.js" defer>  </script>
+     <script type="text/javascript" src="./src/Player/movement.js"></script>
+     <script type="text/javascript" src="./src/Player/hit.js"></script>
+    <script type="text/javascript" src="./src/Sounds/ambient.js"></script>
     
       
   </div>
     <div id = "lb" style = "border-radius: 20px;background: rgba(0, 0, 0, 0.5);width:20%; height: 35%; position: absolute; top:0; right:0; text-align: center;">
           <h2>LeaderBoard</h2><br>
     </div>
-     <script type="text/javascript" src="src/Server/leaderboard.js" defer></script>
-     <script type="text/javascript" src="src/Render/weapon.js" defer></script>
-     <script type="text/javascript" src="src/Player/gather.js" defer></script>
-    <script type="text/javascript" src="src/Server/map.js" defer></script>
+     <script type="text/javascript" src="./src/Server/leaderboard.js" defer></script>
+     <script type="text/javascript" src="./src/Render/weapon.js" defer></script>
+     <script type="text/javascript" src="./src/Player/gather.js" defer></script>
+    <script type="text/javascript" src="./src/Server/map.js" defer></script>
+<script type="text/javascript" src="./src/Player/ticking.js" defer></script>
   </body>
 </html>
